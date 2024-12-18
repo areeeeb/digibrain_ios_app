@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: - Data Models
 struct Memory: Identifiable, Codable {
     let id: String
     let title: String
@@ -36,7 +35,6 @@ struct QueryResponse: Codable {
     let relevantMemories: [Memory]
 }
 
-// MARK: - API Service
 class APIService {
     static let shared = APIService()
     private init() {}
@@ -69,7 +67,6 @@ class APIService {
         return decoder
     }()
     
-    // MARK: - Memory Operations
     func addMemory(title: String, content: String, userId: String) async throws -> Memory {
         guard let url = URL(string: "\(baseURL)/memories") else {
             throw APIError.invalidRequest
@@ -151,7 +148,6 @@ class APIService {
         }
     }
     
-    // MARK: - Query Operations
     func askQuestion(_ question: Question) async throws -> QueryResponse {
         guard let url = URL(string: "\(baseURL)/query") else {
             throw APIError.invalidRequest
@@ -183,7 +179,6 @@ class APIService {
         }
     }
     
-    // MARK: - Error Handling
     enum APIError: Error {
         case invalidRequest
         case networkError

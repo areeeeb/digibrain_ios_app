@@ -170,6 +170,8 @@ struct HomeView: View {
                             Image(systemName: "line.horizontal.3")
                                 .font(.title2)
                                 .foregroundColor(.primary)
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
                         }
                         
                         Spacer()
