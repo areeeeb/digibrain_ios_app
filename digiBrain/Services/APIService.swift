@@ -39,7 +39,8 @@ class APIService {
     static let shared = APIService()
     private init() {}
     
-    private let baseURL = "http://10.0.0.67:3000/api"
+    // private let baseURL = "http://10.0.0.67:3000/api"
+    private let baseURL = "https://appdev-webserver-8uhfh.ondigitalocean.app/api"
     
     private let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
