@@ -7,12 +7,15 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
+import FirebaseAuth
 
 @main
 struct digiBrainApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
+            AuthState.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -23,6 +26,18 @@ struct digiBrainApp: App {
         }
     }()
 
+    init() {
+        FirebaseApp.configure()
+        print("Firebase has been configured")
+        
+        // Check if the user is already signed in
+        if let user = Auth.auth().currentUser {
+            print("User is signed in with uid: \(user.uid)")
+        } else {
+            print("No user is signed in.")
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -30,3 +45,4 @@ struct digiBrainApp: App {
         .modelContainer(sharedModelContainer)
     }
 }
+
